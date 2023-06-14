@@ -1,4 +1,5 @@
 import 'package:another_flushbar/flushbar.dart';
+import 'package:cake_wallet/themes/extensions/cake_page_theme.dart';
 import 'package:cake_wallet/utils/show_bar.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter/material.dart';
@@ -141,7 +142,7 @@ class AuthPageState extends State<AuthPage> {
                       ),
                     ))
                 : Container(),
-            backgroundColor: Theme.of(context).colorScheme.background,
+            backgroundColor: Theme.of(context).extension<PageStandardTheme>()!.backgroundColor,
             border: null),
         resizeToAvoidBottomInset: false,
         body: PinCode((pin, _) => widget.authViewModel.auth(password: pin),

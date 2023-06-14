@@ -1,6 +1,6 @@
 import 'package:cake_wallet/store/settings_store.dart';
+import 'package:cake_wallet/themes/extensions/cake_page_theme.dart';
 import 'package:cake_wallet/themes/theme_base.dart';
-import 'package:cake_wallet/utils/responsive_layout_util.dart';
 import 'package:flutter/material.dart';
 import 'package:cake_wallet/view_model/dashboard/dashboard_view_model.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -36,9 +36,8 @@ class BalancePage extends StatelessWidget {
                         fontFamily: 'Lato',
                         fontWeight: FontWeight.w600,
                         color: Theme.of(context)
-                            .accentTextTheme!
-                            .displayMedium!
-                            .backgroundColor!,
+                            .extension<DashboardPageTheme>()!
+                            .pageTitleColor,
                         height: 1),
                     maxLines: 1,
                     textAlign: TextAlign.center);
@@ -48,10 +47,12 @@ class BalancePage extends StatelessWidget {
               return IntroducingCard(
                   title: S.of(context).introducing_cake_pay,
                   subTitle: S.of(context).cake_pay_learn_more,
-                  borderColor: settingsStore.currentTheme.type == ThemeType.bright
-                      ? Color.fromRGBO(255, 255, 255, 0.2)
-                      : Colors.transparent,
-                  closeCard: dashboardViewModel.balanceViewModel.disableIntroCakePayCard);
+                  borderColor: Theme.of(context)
+                      .extension<DashboardPageTheme>()!
+                      .cardTheme!
+                      .borderColor!,
+                  closeCard: dashboardViewModel
+                      .balanceViewModel.disableIntroCakePayCard);
             }
             return Container();
           }),
@@ -96,12 +97,16 @@ class BalancePage extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30.0),
           border: Border.all(
-            color: settingsStore.currentTheme.type == ThemeType.bright
-                ? Color.fromRGBO(255, 255, 255, 0.2)
-                : Colors.transparent,
+            color: Theme.of(context)
+                .extension<DashboardPageTheme>()!
+                .cardTheme!
+                .borderColor!,
             width: 1,
           ),
-          color: Theme.of(context).textTheme!.titleLarge!.backgroundColor!),
+          color: Theme.of(context)
+              .extension<DashboardPageTheme>()!
+              .cardTheme!
+              .backgroundColor),
       child: Container(
           margin: const EdgeInsets.only(top: 16, left: 24, right: 24, bottom: 24),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -115,9 +120,8 @@ class BalancePage extends StatelessWidget {
                     fontFamily: 'Lato',
                     fontWeight: FontWeight.w400,
                     color: Theme.of(context)
-                        .accentTextTheme!
-                        .displaySmall!
-                        .backgroundColor!,
+                        .extension<DashboardPageTheme>()!
+                        .secondaryTextColor,
                     height: 1)),
             SizedBox(height: 5),
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -127,9 +131,9 @@ class BalancePage extends StatelessWidget {
                       fontFamily: 'Lato',
                       fontWeight: FontWeight.w900,
                       color: Theme.of(context)
-                          .accentTextTheme!
-                          .displayMedium!
-                          .backgroundColor!,
+                          .extension<DashboardPageTheme>()!
+                          .cardTheme!
+                          .balanceTextColor,
                       height: 1),
                   maxLines: 1,
                   textAlign: TextAlign.center),
@@ -139,9 +143,9 @@ class BalancePage extends StatelessWidget {
                       fontFamily: 'Lato',
                       fontWeight: FontWeight.w800,
                       color: Theme.of(context)
-                          .accentTextTheme!
-                          .displayMedium!
-                          .backgroundColor!,
+                          .extension<DashboardPageTheme>()!
+                          .cardTheme!
+                          .assetTitleColor,
                       height: 1)),
             ]),
             SizedBox(
@@ -154,9 +158,9 @@ class BalancePage extends StatelessWidget {
                     fontFamily: 'Lato',
                     fontWeight: FontWeight.w500,
                     color: Theme.of(context)
-                        .accentTextTheme!
-                        .displayMedium!
-                        .backgroundColor!,
+                        .extension<DashboardPageTheme>()!
+                        .cardTheme!
+                        .primaryTextColor,
                     height: 1)),
             SizedBox(height: 26),
             if (frozenBalance.isNotEmpty)
@@ -208,9 +212,9 @@ class BalancePage extends StatelessWidget {
                     fontFamily: 'Lato',
                     fontWeight: FontWeight.w400,
                     color: Theme.of(context)
-                        .accentTextTheme!
-                        .displaySmall!
-                        .backgroundColor!,
+                        .extension<DashboardPageTheme>()!
+                        .cardTheme!
+                        .secondaryTextColor,
                     height: 1)),
             SizedBox(height: 8),
             AutoSizeText(additionalBalance,
@@ -219,9 +223,9 @@ class BalancePage extends StatelessWidget {
                     fontFamily: 'Lato',
                     fontWeight: FontWeight.w400,
                     color: Theme.of(context)
-                        .accentTextTheme!
-                        .displayMedium!
-                        .backgroundColor!,
+                        .extension<DashboardPageTheme>()!
+                        .cardTheme!
+                        .balanceTextColor,
                     height: 1),
                 maxLines: 1,
                 textAlign: TextAlign.center),
@@ -236,9 +240,9 @@ class BalancePage extends StatelessWidget {
                   fontFamily: 'Lato',
                   fontWeight: FontWeight.w400,
                   color: Theme.of(context)
-                      .accentTextTheme!
-                      .displayMedium!
-                      .backgroundColor!,
+                      .extension<DashboardPageTheme>()!
+                      .cardTheme!
+                      .primaryTextColor,
                   height: 1),
             )
           ])),

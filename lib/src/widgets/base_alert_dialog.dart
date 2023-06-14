@@ -1,5 +1,7 @@
 import 'dart:ui';
 import 'package:cake_wallet/src/widgets/section_divider.dart';
+import 'package:cake_wallet/themes/extensions/alert_theme.dart';
+import 'package:cake_wallet/themes/extensions/cake_page_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:cake_wallet/palette.dart';
 
@@ -25,7 +27,8 @@ class BaseAlertDialog extends StatelessWidget {
         fontSize: 20,
         fontFamily: 'Lato',
         fontWeight: FontWeight.w600,
-        color: Theme.of(context).primaryTextTheme!.titleLarge!.color!,
+        color:
+            Theme.of(context).extension<PageStandardTheme>()!.primaryTextColor,
         decoration: TextDecoration.none,
       ),
     );
@@ -39,7 +42,8 @@ class BaseAlertDialog extends StatelessWidget {
         fontSize: 16,
         fontWeight: FontWeight.normal,
         fontFamily: 'Lato',
-        color: Theme.of(context).primaryTextTheme!.titleLarge!.color!,
+        color:
+            Theme.of(context).extension<PageStandardTheme>()!.primaryTextColor,
         decoration: TextDecoration.none,
       ),
     );
@@ -58,9 +62,10 @@ class BaseAlertDialog extends StatelessWidget {
                   style: TextButton.styleFrom(
                       backgroundColor: leftActionButtonColor ??
                           Theme.of(context)
-                              .accentTextTheme!
-                              .bodyLarge!
-                              .decorationColor!,
+                              .extension<CakeAlertTheme>()!
+                              .actionButtonsTheme!
+                              .leftButtonTheme!
+                              .backgroundColor,
                       shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.zero))),
                   child: Text(
@@ -72,9 +77,10 @@ class BaseAlertDialog extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                       color: leftActionButtonTextColor ??
                           Theme.of(context)
-                              .primaryTextTheme!
-                              .bodyLarge!
-                              .backgroundColor!,
+                              .extension<CakeAlertTheme>()!
+                              .actionButtonsTheme!
+                              .leftButtonTheme!
+                              .textColor,
                       decoration: TextDecoration.none,
                     ),
                   )),
@@ -86,9 +92,10 @@ class BaseAlertDialog extends StatelessWidget {
                   style: TextButton.styleFrom(
                       backgroundColor: rightActionButtonColor ??
                           Theme.of(context)
-                              .accentTextTheme!
-                              .bodyMedium!
-                              .backgroundColor!,
+                              .extension<CakeAlertTheme>()!
+                              .actionButtonsTheme!
+                              .rightButtonTheme!
+                              .backgroundColor,
                       shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.zero))),
                   child: Text(
@@ -100,9 +107,10 @@ class BaseAlertDialog extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                       color: rightActionButtonTextColor ??
                           Theme.of(context)
-                              .primaryTextTheme!
-                              .bodyMedium!
-                              .backgroundColor!,
+                              .extension<CakeAlertTheme>()!
+                              .actionButtonsTheme!
+                              .rightButtonTheme!
+                              .textColor,
                       decoration: TextDecoration.none,
                     ),
                   )),
@@ -129,9 +137,8 @@ class BaseAlertDialog extends StatelessWidget {
                   child: Container(
                     width: 300,
                     color: Theme.of(context)
-                        .accentTextTheme!
-                        .titleLarge!
-                        .decorationColor!,
+                        .extension<CakeAlertTheme>()!
+                        .backgroundColor,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[

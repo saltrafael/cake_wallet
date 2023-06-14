@@ -3,7 +3,9 @@ import 'package:cake_wallet/entities/preferences_key.dart';
 import 'package:cake_wallet/di.dart';
 import 'package:cake_wallet/entities/main_actions.dart';
 import 'package:cake_wallet/src/screens/dashboard/desktop_widgets/desktop_sidebar_wrapper.dart';
+import 'package:cake_wallet/src/widgets/gradient_background.dart';
 import 'package:cake_wallet/src/screens/dashboard/widgets/market_place_page.dart';
+import 'package:cake_wallet/themes/extensions/cake_page_theme.dart';
 import 'package:cake_wallet/utils/version_comparator.dart';
 import 'package:cake_wallet/view_model/dashboard/market_place_view_model.dart';
 import 'package:cake_wallet/generated/i18n.dart';
@@ -72,14 +74,8 @@ class _DashboardPageView extends BasePage {
 
   @override
   Widget Function(BuildContext, Widget) get rootWrapper =>
-      (BuildContext context, Widget scaffold) => Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
-            Theme.of(context).colorScheme.secondary,
-            Theme.of(context).scaffoldBackgroundColor,
-            Theme.of(context).primaryColor,
-          ], begin: Alignment.topRight, end: Alignment.bottomLeft)),
-          child: scaffold);
+      (BuildContext context, Widget scaffold) =>
+          GradientBackground(scaffold: scaffold);
 
   @override
   bool get resizeToAvoidBottomInset => false;
@@ -97,10 +93,8 @@ class _DashboardPageView extends BasePage {
   @override
   Widget trailing(BuildContext context) {
     final menuButton = Image.asset('assets/images/menu.png',
-        color: Theme.of(context)
-            .accentTextTheme!
-            .displayMedium!
-            .backgroundColor);
+        color:
+            Theme.of(context).extension<DashboardPageTheme>()!.menuIconColor);
 
     return Container(
         alignment: Alignment.centerRight,
@@ -165,11 +159,14 @@ class _DashboardPageView extends BasePage {
                           radius: 6.0,
                           dotWidth: 6.0,
                           dotHeight: 6.0,
-                          dotColor: Theme.of(context).indicatorColor,
+                          dotColor: Theme.of(context)
+                              .extension<DashboardPageTheme>()!
+                              .pageIndicatorStyle!
+                              .dotIconColor!,
                           activeDotColor: Theme.of(context)
-                              .accentTextTheme!
-                              .headlineMedium!
-                              .backgroundColor!),
+                              .extension<DashboardPageTheme>()!
+                              .pageIndicatorStyle!
+                              .activePageDotIconColor!),
                     ),
                   );
                 }
@@ -182,15 +179,16 @@ class _DashboardPageView extends BasePage {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50.0),
                       border: Border.all(
-                        color: currentTheme.type == ThemeType.bright
-                            ? Color.fromRGBO(255, 255, 255, 0.2)
-                            : Colors.transparent,
+                        color: Theme.of(context)
+                            .extension<DashboardPageTheme>()!
+                            .cardTheme!
+                            .borderColor!,
                         width: 1,
                       ),
                       color: Theme.of(context)
-                          .textTheme!
-                          .titleLarge!
-                          .backgroundColor!,
+                          .extension<DashboardPageTheme>()!
+                          .cardTheme!
+                          .backgroundColor,
                     ),
                     child: Container(
                       padding: EdgeInsets.only(left: 32, right: 32),
@@ -211,13 +209,15 @@ class _DashboardPageView extends BasePage {
                                                     dashboardViewModel) ??
                                                 true
                                             ? Theme.of(context)
-                                                .accentTextTheme!
-                                                .displayMedium!
-                                                .backgroundColor!
+                                                .extension<
+                                                    DashboardPageTheme>()!
+                                                .mainActionsTheme!
+                                                .iconColor
                                             : Theme.of(context)
-                                                .accentTextTheme!
-                                                .displaySmall!
-                                                .backgroundColor!),
+                                                .extension<
+                                                    DashboardPageTheme>()!
+                                                .mainActionsTheme!
+                                                .disabledItemColor),
                                     title: action.name(context),
                                     onClick: () async => await action.onTap(
                                         context, dashboardViewModel),
@@ -226,9 +226,9 @@ class _DashboardPageView extends BasePage {
                                             true
                                         ? null
                                         : Theme.of(context)
-                                            .accentTextTheme!
-                                            .displaySmall!
-                                            .backgroundColor!,
+                                            .extension<DashboardPageTheme>()!
+                                            .mainActionsTheme!
+                                            .disabledItemColor,
                                   ),
                                 ))
                             .toList(),

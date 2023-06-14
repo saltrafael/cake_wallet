@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:cake_wallet/themes/extensions/picker_theme.dart';
 import 'package:cake_wallet/utils/responsive_layout_util.dart';
 import 'package:flutter/material.dart';
 import 'package:cw_core/currency.dart';
@@ -144,9 +145,8 @@ class _PickerState<Item> extends State<Picker<Item>> {
             borderRadius: BorderRadius.all(Radius.circular(30)),
             child: Container(
               color: Theme.of(context)
-                  .accentTextTheme!
-                  .titleLarge!
-                  .color!,
+                  .extension<CakePickerTheme>()!
+                  .backgroundColor,
               child: ConstrainedBox(
                 constraints: BoxConstraints(
                   maxHeight: containerHeight,
@@ -302,10 +302,7 @@ class _PickerState<Item> extends State<Picker<Item>> {
       },
       child: Container(
         height: 55,
-        color: Theme.of(context)
-            .accentTextTheme!
-            .titleLarge!
-            .color!,
+        color: Theme.of(context).extension<CakePickerTheme>()!.backgroundColor,
         padding: EdgeInsets.symmetric(horizontal: 24),
         child: Row(
           mainAxisSize: MainAxisSize.max,
@@ -392,10 +389,7 @@ class _PickerState<Item> extends State<Picker<Item>> {
       },
       child: Container(
         height: 55,
-        color: Theme.of(context)
-            .accentTextTheme!
-            .titleLarge!
-            .color!,
+        color: Theme.of(context).extension<CakePickerTheme>()!.backgroundColor,
         padding: EdgeInsets.symmetric(horizontal: 24),
         child: Row(
           mainAxisSize: MainAxisSize.max,
@@ -458,9 +452,8 @@ class _PickerState<Item> extends State<Picker<Item>> {
             ),
             Icon(Icons.check_circle,
                 color: Theme.of(context)
-                    .accentTextTheme!
-                    .bodyLarge!
-                    .color!),
+                    .extension<CakePickerTheme>()!
+                    .selectedItemIconColor),
           ],
         ),
       ),

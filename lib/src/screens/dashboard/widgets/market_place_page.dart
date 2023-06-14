@@ -1,6 +1,7 @@
 import 'package:cake_wallet/routes.dart';
 import 'package:cake_wallet/src/widgets/alert_with_one_action.dart';
 import 'package:cake_wallet/src/widgets/market_place_item.dart';
+import 'package:cake_wallet/themes/extensions/cake_page_theme.dart';
 import 'package:cake_wallet/utils/show_pop_up.dart';
 import 'package:cake_wallet/view_model/dashboard/dashboard_view_model.dart';
 import 'package:cake_wallet/view_model/dashboard/market_place_view_model.dart';
@@ -41,9 +42,8 @@ class MarketPlacePage extends StatelessWidget {
                   fontSize: 24,
                   fontWeight: FontWeight.w500,
                   color: Theme.of(context)
-                      .accentTextTheme!
-                      .displayMedium!
-                      .backgroundColor!,
+                      .extension<DashboardPageTheme>()!
+                      .pageTitleColor,
                 ),
               ),
               Expanded(

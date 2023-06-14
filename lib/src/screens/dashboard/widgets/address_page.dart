@@ -2,9 +2,11 @@ import 'package:cake_wallet/anonpay/anonpay_donation_link_info.dart';
 import 'package:cake_wallet/entities/preferences_key.dart';
 import 'package:cake_wallet/entities/receive_page_option.dart';
 import 'package:cake_wallet/src/screens/base_page.dart';
+import 'package:cake_wallet/src/widgets/gradient_background.dart';
 import 'package:cake_wallet/src/screens/dashboard/widgets/present_receive_option_picker.dart';
 import 'package:cake_wallet/src/widgets/alert_with_two_actions.dart';
 import 'package:cake_wallet/src/widgets/keyboard_done_button.dart';
+import 'package:cake_wallet/themes/extensions/cake_card_theme.dart';
 import 'package:cake_wallet/themes/theme_base.dart';
 import 'package:cake_wallet/utils/responsive_layout_util.dart';
 import 'package:cake_wallet/utils/share_util.dart';
@@ -60,19 +62,10 @@ class AddressPage extends BasePage {
   bool effectsInstalled = false;
 
   @override
-  Widget? leading(BuildContext context) {
-    final _backButton = Icon(
-      Icons.arrow_back_ios,
-      color: Theme.of(context)
-          .accentTextTheme!
-          .displayMedium!
-          .backgroundColor!,
-      size: 16,
-    );
-    final _closeButton = currentTheme.type == ThemeType.dark
-        ? closeButtonImageDarkTheme
-        : closeButtonImage;
+  bool get gradientBackground => true;
 
+  @override
+  Widget? leading(BuildContext context) {
     bool isMobileView = ResponsiveLayoutUtil.instance.isMobile(context);
 
     return MergeSemantics(
@@ -89,7 +82,8 @@ class AddressPage extends BasePage {
                     (states) => Colors.transparent),
               ),
               onPressed: () => onClose(context),
-              child: !isMobileView ? _closeButton : _backButton,
+              child:
+                  !isMobileView ? closeButton(context) : backButton(context),
             ),
           ),
         ),
@@ -106,14 +100,8 @@ class AddressPage extends BasePage {
 
   @override
   Widget Function(BuildContext, Widget) get rootWrapper =>
-      (BuildContext context, Widget scaffold) => Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
-            Theme.of(context).colorScheme.secondary,
-            Theme.of(context).scaffoldBackgroundColor,
-            Theme.of(context).primaryColor,
-          ], begin: Alignment.topRight, end: Alignment.bottomLeft)),
-          child: scaffold);
+      (BuildContext context, Widget scaffold) =>
+          GradientBackground(scaffold: scaffold);
 
   @override
   Widget? trailing(BuildContext context) {

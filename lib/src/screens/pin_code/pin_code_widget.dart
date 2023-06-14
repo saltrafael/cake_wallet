@@ -1,3 +1,4 @@
+import 'package:cake_wallet/themes/extensions/cake_page_theme.dart';
 import 'package:cake_wallet/utils/responsive_layout_util.dart';
 import 'package:cake_wallet/utils/show_bar.dart';
 import 'package:another_flushbar/flushbar.dart';
@@ -110,11 +111,11 @@ class PinCodeState<T extends PinCodeWidget> extends State<T> {
   Widget body(BuildContext context) {
     final deleteIconImage = Image.asset(
       'assets/images/delete_icon.png',
-      color: Theme.of(context).primaryTextTheme!.titleLarge!.color!,
+      color: Theme.of(context).extension<PageStandardTheme>()!.primaryTextColor,
     );
     final faceImage = Image.asset(
       'assets/images/face.png',
-      color: Theme.of(context).primaryTextTheme!.titleLarge!.color!,
+      color: Theme.of(context).extension<PageStandardTheme>()!.primaryTextColor,
     );
 
     return RawKeyboardListener(
@@ -133,7 +134,7 @@ class PinCodeState<T extends PinCodeWidget> extends State<T> {
         }
       },
       child: Container(
-        color: Theme.of(context).colorScheme.background,
+        color: Theme.of(context).extension<PageStandardTheme>()!.backgroundColor,
         padding: EdgeInsets.only(left: 40.0, right: 40.0, bottom: 40.0),
         child: Column(
           children: <Widget>[
@@ -143,7 +144,7 @@ class PinCodeState<T extends PinCodeWidget> extends State<T> {
                     fontSize: 20,
                     fontWeight: FontWeight.w500,
                     color:
-                        Theme.of(context).primaryTextTheme!.titleLarge!.color!)),
+                        Theme.of(context).extension<PageStandardTheme>()!.primaryTextColor)),
             Spacer(flex: 3),
             Container(
               width: 180,
@@ -160,14 +161,11 @@ class PinCodeState<T extends PinCodeWidget> extends State<T> {
                         shape: BoxShape.circle,
                         color: isFilled
                             ? Theme.of(context)
-                                .primaryTextTheme!
-                                .titleLarge!
-                                .color!
+                                .extension<PageStandardTheme>()!
+                                .primaryTextColor!
                             : Theme.of(context)
-                                .accentTextTheme!
-                                .bodyMedium!
-                                .color!
-                                .withOpacity(0.25),
+                                .extension<PageStandardTheme>()!
+                                .pinIndicatorColor,
                       ));
                 }),
               ),
@@ -186,9 +184,8 @@ class PinCodeState<T extends PinCodeWidget> extends State<T> {
                       fontSize: 14.0,
                       fontWeight: FontWeight.normal,
                       color: Theme.of(context)
-                          .accentTextTheme!
-                          .bodyMedium!
-                          .decorationColor!),
+                          .extension<PageStandardTheme>()!
+                          .changePinLengthTextColor),
                 ),
               )
             ],
@@ -232,7 +229,7 @@ class PinCodeState<T extends PinCodeWidget> extends State<T> {
                                         child: TextButton(
                                           onPressed: () => _pop(),
                                           style: TextButton.styleFrom(
-                                            backgroundColor: Theme.of(context).colorScheme.background,
+                                            backgroundColor: Theme.of(context).extension<PageStandardTheme>()!.backgroundColor,
                                             shape: CircleBorder(),
                                           ),
                                           child: deleteIconImage,
@@ -249,17 +246,14 @@ class PinCodeState<T extends PinCodeWidget> extends State<T> {
                                   child: TextButton(
                                     onPressed: () => _push(index),
                                     style: TextButton.styleFrom(
-                                      backgroundColor: Theme.of(context).colorScheme.background,
+                                      backgroundColor: Theme.of(context).extension<PageStandardTheme>()!.backgroundColor,
                                       shape: CircleBorder(),
                                     ),
                                     child: Text('$index',
                                         style: TextStyle(
                                             fontSize: 30.0,
                                             fontWeight: FontWeight.w600,
-                                            color: Theme.of(context)
-                                                .primaryTextTheme!
-                                                .titleLarge!
-                                                .color!)),
+                                            color: Theme.of(context).extension<PageStandardTheme>()!.primaryTextColor)),
                                   ),
                                 );
                               }),

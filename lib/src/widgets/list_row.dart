@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:cake_wallet/themes/extensions/cake_page_theme.dart';
 import 'package:flutter/material.dart';
 
 class ListRow extends StatelessWidget {
@@ -19,10 +19,10 @@ class ListRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: Theme.of(context).colorScheme.background,
+      color: Theme.of(context).extension<PageStandardTheme>()!.backgroundColor,
       child: Padding(
         padding:
-        const EdgeInsets.only(left: 24, top: 16, bottom: 16, right: 24),
+            const EdgeInsets.only(left: 24, top: 16, bottom: 16, right: 24),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -31,9 +31,8 @@ class ListRow extends StatelessWidget {
                       fontSize: titleFontSize,
                       fontWeight: FontWeight.w500,
                       color: Theme.of(context)
-                          .primaryTextTheme!
-                          .labelSmall!
-                          .color!),
+                          .extension<PageStandardTheme>()!
+                          .secondaryTextColor),
                   textAlign: TextAlign.left),
               Padding(
                 padding: const EdgeInsets.only(top: 12),
@@ -48,16 +47,15 @@ class ListRow extends StatelessWidget {
                               fontSize: valueFontSize,
                               fontWeight: FontWeight.w500,
                               color: Theme.of(context)
-                                  .primaryTextTheme!
-                                  .titleLarge!
-                                  .color!)),
+                                  .extension<PageStandardTheme>()!
+                                  .primaryTextColor)),
                     ),
                     image != null
-                    ? Padding(
-                      padding: EdgeInsets.only(left: 24),
-                      child: image,
-                    )
-                    : Offstage()
+                        ? Padding(
+                            padding: EdgeInsets.only(left: 24),
+                            child: image,
+                          )
+                        : Offstage()
                   ],
                 ),
               )

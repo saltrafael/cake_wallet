@@ -1,3 +1,12 @@
+import 'package:cake_wallet/themes/extensions/alert_theme.dart';
+import 'package:cake_wallet/themes/extensions/button_theme.dart';
+import 'package:cake_wallet/themes/extensions/cake_card_theme.dart';
+import 'package:cake_wallet/themes/extensions/cake_page_theme.dart';
+import 'package:cake_wallet/themes/extensions/list_theme.dart';
+import 'package:cake_wallet/themes/extensions/menu_theme.dart';
+import 'package:cake_wallet/themes/extensions/picker_theme.dart';
+import 'package:cake_wallet/themes/extensions/settings_choice_theme.dart';
+import 'package:cake_wallet/themes/extensions/switch_button_style.dart';
 import 'package:cake_wallet/themes/theme_base.dart';
 import 'package:cake_wallet/generated/i18n.dart';
 import 'package:cake_wallet/palette.dart';
@@ -12,7 +21,91 @@ class BrightTheme extends ThemeBase {
   @override
   ThemeType get type => ThemeType.bright;
 
-  ThemeData theme = ThemeData(
+  Color get primaryColor => Palette.moderateSlateBlue;
+  Color get primaryTextColor => Palette.darkBlueCraiola;
+  Color get containerColor => Palette.moderateLavender;
+
+  PageStandardTheme get brightPageStandardTheme => PageStandardTheme(
+      backgroundColor: Colors.white,
+      primaryColor: primaryColor,
+      primaryTextColor: primaryTextColor,
+      containerColor: containerColor,
+      supportIconColor: Colors.black,
+      secondaryTextColor: Palette.darkGray,
+      checkboxBorderColor: PaletteDark.pigeonBlue,
+      pinIndicatorColor: Palette.darkGray,
+      changePinLengthTextColor: Palette.darkGray,
+      disclaimerButtonTheme: CakeButtonTheme(
+          backgroundColor: primaryColor, textColor: Colors.white),
+      choicesTheme: SettingsChoicesTheme(
+          choiceBackgroundColor: Palette.shadowWhite,
+          choiceTextColor: PaletteDark.pigeonBlue,
+          selectedItemBackgroundColor: primaryColor,
+          selectedItemTextColor: Colors.white),
+      listTheme: CakeListTheme(itemUnderlineColor: Palette.wildPeriwinkle),
+      switchButtonStyle: SwitchButtonStyle(
+          enabledColor: primaryColor, disabledColor: Palette.darkGray));
+
+  PageGradientTheme get brightPageGradientTheme => PageGradientTheme(
+      firstGradientColor: Palette.blueCraiola,
+      secondGradientColor: Palette.pinkFlamingo,
+      thirdGradientColor: Palette.redHat,
+      primaryTextColor: Colors.white);
+
+  DashboardPageTheme get brightDashboardPageTheme => DashboardPageTheme(
+      primaryTextColor: brightPageGradientTheme.primaryTextColor,
+      secondaryTextColor: Colors.white.withOpacity(0.5),
+      containerColor: containerColor,
+      filterIconColor: Colors.white,
+      syncIndicatorStyle: SyncIndicatorStyle(
+          backgroundColor: Colors.white.withOpacity(0.15),
+          syncedBackgroundColor: Colors.white.withOpacity(0.2),
+          textColor: brightPageGradientTheme.primaryTextColor),
+      cardTheme: DashboardPageCardTheme(
+          backgroundColor: Colors.white.withOpacity(0.2),
+          primaryTextColor: brightPageGradientTheme.primaryTextColor,
+          borderColor: Colors.white.withOpacity(0.20)));
+
+  CakeAlertTheme get brightCakeAlertTheme => CakeAlertTheme(
+      backgroundColor: Colors.white,
+      actionButtonsTheme: ActionButtonsTheme(
+          leftButtonTheme: CakeButtonTheme(textColor: Palette.brightOrange),
+          rightButtonTheme: CakeButtonTheme(textColor: primaryColor)));
+
+  CakeMenuTheme get brightCakeMenuTheme => CakeMenuTheme(
+      coinIconColor: Colors.white,
+      backgroundColor: Colors.white,
+      headerFirstGradientColor: Palette.blueCraiola,
+      headerSecondGradientColor: Palette.pinkFlamingo,
+      subnameTextColor: Colors.white.withOpacity(0.5));
+
+  CakePickerTheme get brightPickerTheme => CakePickerTheme(
+      primaryTextColor: primaryTextColor,
+      backgroundColor: Colors.white,
+      dividerColor: Palette.periwinkleCraiola,
+      selectedItemIconColor: primaryColor,
+      hintTextStyle: TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+          fontFamily: 'Lato',
+          decoration: TextDecoration.none,
+          color: primaryTextColor),
+      itemTextStyle: TextStyle(
+          fontSize: 14,
+          fontFamily: 'Lato',
+          fontWeight: FontWeight.w600,
+          color: primaryTextColor,
+          decoration: TextDecoration.none),
+      currencyTagStyle: CurrencyTagStyle(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(6.0),
+              color: PaletteDark.violetBlue),
+          textStyle: TextStyle(
+              fontSize: 7.0,
+              fontFamily: 'Lato',
+              color: PaletteDark.wildBlueGrey)));
+
+  ThemeData get theme => ThemeData(
       fontFamily: 'Lato',
       brightness: Brightness.light,
       scaffoldBackgroundColor: Palette.pinkFlamingo, // second gradient color
@@ -21,12 +114,22 @@ class BrightTheme extends ThemeBase {
       hoverColor: Colors.white, // amount hint text (receive page)
       dividerColor: Palette.paleBlue,
       hintColor: Palette.gray,
+      extensions: <ThemeExtension<dynamic>>[
+        brightPageStandardTheme,
+        brightPageGradientTheme,
+        brightDashboardPageTheme,
+        brightCakeAlertTheme,
+        brightCakeMenuTheme,
+        brightPickerTheme,
+      ],
       textTheme: TextTheme(
           // title -> titleLarge
           titleLarge: TextStyle(
             color: Colors.white, // sync_indicator text
-            backgroundColor: Colors.white.withOpacity(0.2), // synced sync_indicator
-            decorationColor: Colors.white.withOpacity(0.15), // not synced sync_indicator
+            backgroundColor:
+                Colors.white.withOpacity(0.2), // synced sync_indicator
+            decorationColor:
+                Colors.white.withOpacity(0.15), // not synced sync_indicator
           ),
           bodySmall: TextStyle(
             color: Palette.shineOrange, // not synced light
@@ -42,17 +145,20 @@ class BrightTheme extends ThemeBase {
           // subhead -> titleMedium
           titleMedium: TextStyle(
             color: Colors.white.withOpacity(0.2), // address button border
-            decorationColor: Colors.white.withOpacity(0.4), // copy button (qr widget)
+            decorationColor:
+                Colors.white.withOpacity(0.4), // copy button (qr widget)
           ),
           // headline -> headlineSmall
           headlineSmall: TextStyle(
             color: Colors.white, // qr code
-            decorationColor: Colors.white.withOpacity(0.5), // bottom border of amount (receive page)
+            decorationColor: Colors.white
+                .withOpacity(0.5), // bottom border of amount (receive page)
           ),
           // display1 -> headlineMedium
           headlineMedium: TextStyle(
             color: PaletteDark.lightBlueGrey, // icons color (receive page)
-            decorationColor: Palette.lavender, // icons background (receive page)
+            decorationColor:
+                Palette.lavender, // icons background (receive page)
           ),
           // display2 -> displaySmall
           displaySmall: TextStyle(
@@ -90,8 +196,7 @@ class BrightTheme extends ThemeBase {
           bodyLarge: TextStyle(
             color: Palette.moderateLavender, // menu header
             decorationColor: Colors.white, // menu background
-          )
-      ),
+          )),
       scrollbarTheme: ScrollbarThemeData(
         thumbColor: MaterialStateProperty.all(Palette.moderatePurpleBlue),
         trackColor: MaterialStateProperty.all(Palette.periwinkleCraiola),
@@ -180,9 +285,9 @@ class BrightTheme extends ThemeBase {
               decorationColor: Colors.white.withOpacity(
                   0.5), // text field border on bottom panel (exchange page)
               backgroundColor: Palette.brightOrange // alert left button text
-          )
-      ),
-      focusColor: Colors.white.withOpacity(0.2), // text field button (exchange page)
+              )),
+      focusColor:
+          Colors.white.withOpacity(0.2), // text field button (exchange page)
       accentTextTheme: TextTheme(
         // title -> titleLarge
         titleLarge: TextStyle(
@@ -192,13 +297,16 @@ class BrightTheme extends ThemeBase {
             ),
         bodySmall: TextStyle(
           color: Palette.moderateLavender, // container (confirm exchange)
-          backgroundColor: Palette.moderateLavender, // button background (confirm exchange)
-          decorationColor: Palette.darkBlueCraiola, // text color (information page)
+          backgroundColor:
+              Palette.moderateLavender, // button background (confirm exchange)
+          decorationColor:
+              Palette.darkBlueCraiola, // text color (information page)
         ),
         // subtitle -> titleSmall
         titleSmall: TextStyle(
             color: Palette.darkBlueCraiola, // QR code (exchange trade page)
-            backgroundColor: Palette.wildPeriwinkle, // divider (exchange trade page)
+            backgroundColor:
+                Palette.wildPeriwinkle, // divider (exchange trade page)
             //decorationColor: Palette.blueCraiola // crete new wallet button background (wallet list page)
             decorationColor: Palette
                 .moderateSlateBlue // crete new wallet button background (wallet list page)
@@ -215,7 +323,8 @@ class BrightTheme extends ThemeBase {
         // subhead -> titleMedium
         titleMedium: TextStyle(
             color: Palette.darkGray, // titles color (filter widget)
-            backgroundColor: Palette.periwinkle, // divider color (filter widget)
+            backgroundColor:
+                Palette.periwinkle, // divider color (filter widget)
             decorationColor: Colors.white // checkbox background (filter widget)
             ),
         labelSmall: TextStyle(
@@ -225,7 +334,8 @@ class BrightTheme extends ThemeBase {
         // display1 -> headlineMedium
         headlineMedium: TextStyle(
             color: Palette.blueCraiola, // first gradient color (menu header)
-            decorationColor: Palette.pinkFlamingo, // second gradient color(menu header)
+            decorationColor:
+                Palette.pinkFlamingo, // second gradient color(menu header)
             backgroundColor: Colors.white // active dot color
             ),
         // display2 -> displaySmall
@@ -263,13 +373,18 @@ class BrightTheme extends ThemeBase {
             color: Palette.moderateSlateBlue, // primary buttons
             decorationColor: Colors.white, // alert left button,
             backgroundColor: Palette.dullGray // keyboard bar color
-        ),
+            ),
       ),
       cardColor: Palette.moderateSlateBlue // bottom button (action list)
       );
 
+  ThemeData get brightTheme => theme.copyWith(
+        colorScheme: theme.colorScheme.copyWith(
+          background: Colors.white,
+          secondary: Palette.blueCraiola,
+        ),
+      );
+
   @override
-  ThemeData get themeData => theme.copyWith(
-      colorScheme: theme.colorScheme
-          .copyWith(background: Colors.white, secondary: Palette.blueCraiola));
+  ThemeData get themeData => brightTheme;
 }

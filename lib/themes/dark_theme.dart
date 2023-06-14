@@ -1,7 +1,18 @@
+import 'package:cake_wallet/themes/extensions/alert_theme.dart';
+import 'package:cake_wallet/themes/extensions/button_theme.dart';
+// import 'package:cake_wallet/themes/extensions/cake_card_theme.dart';
+import 'package:cake_wallet/themes/extensions/cake_page_theme.dart';
+// import 'package:cake_wallet/themes/extensions/icon_button_theme.dart';
+import 'package:cake_wallet/themes/extensions/list_theme.dart';
+import 'package:cake_wallet/themes/extensions/menu_theme.dart';
+import 'package:cake_wallet/themes/extensions/picker_theme.dart';
+import 'package:cake_wallet/themes/extensions/settings_choice_theme.dart';
+import 'package:cake_wallet/themes/extensions/switch_button_style.dart';
 import 'package:cake_wallet/themes/theme_base.dart';
 import 'package:cake_wallet/generated/i18n.dart';
 import 'package:cake_wallet/palette.dart';
 import 'package:flutter/material.dart';
+import 'package:cake_wallet/themes/extensions/main_actions_theme.dart';
 
 class DarkTheme extends ThemeBase {
   DarkTheme({required int raw}) : super(raw: raw);
@@ -12,7 +23,113 @@ class DarkTheme extends ThemeBase {
   @override
   ThemeType get type => ThemeType.dark;
 
-  ThemeData theme = ThemeData(
+  Color get primaryColor => Palette.blueCraiola;
+  Color get primaryTextColor => Colors.white;
+  Color get containerColor => PaletteDark.nightBlue;
+
+  PageStandardTheme get darkPageStandardTheme => PageStandardTheme(
+        backgroundColor: PaletteDark.backgroundColor,
+        primaryColor: primaryColor,
+        primaryTextColor: primaryTextColor,
+        containerColor: containerColor,
+        supportIconColor: Colors.white,
+        secondaryTextColor: PaletteDark.lightBlueGrey,
+        checkboxBorderColor: PaletteDark.darkCyanBlue,
+        pinIndicatorColor: PaletteDark.indicatorVioletBlue,
+        changePinLengthTextColor: PaletteDark.lightPurpleBlue,
+        disclaimerButtonTheme:
+            CakeButtonTheme(textColor: Palette.darkBlueCraiola),
+        choicesTheme: SettingsChoicesTheme(
+            choiceBackgroundColor: containerColor,
+            choiceTextColor: PaletteDark.darkCyanBlue,
+            selectedItemBackgroundColor: Palette.blueCraiola,
+            selectedItemTextColor: Colors.white),
+        listTheme: CakeListTheme(itemUnderlineColor: PaletteDark.darkOceanBlue),
+        switchButtonStyle: SwitchButtonStyle(
+            enabledColor: primaryColor,
+            disabledColor: PaletteDark.deepVioletBlue),
+      );
+
+  PageGradientTheme get darkPageGradientTheme => PageGradientTheme(
+      firstGradientColor: darkPageStandardTheme.backgroundColor,
+      secondGradientColor: darkPageStandardTheme.backgroundColor,
+      thirdGradientColor: darkPageStandardTheme.backgroundColor,
+      primaryTextColor: darkPageStandardTheme.primaryTextColor);
+
+  DashboardPageTheme get darkDashboardPageTheme => DashboardPageTheme(
+      primaryTextColor: darkPageStandardTheme.primaryTextColor,
+      secondaryTextColor: darkPageStandardTheme.secondaryTextColor,
+      containerColor: containerColor,
+      filterIconColor: PaletteDark.wildBlue,
+      pageIndicatorStyle: PageIndicatorStyle(
+          dotIconColor: PaletteDark.cyanBlue,
+          activePageDotIconColor: Colors.white),
+      mainActionsTheme:
+          MainActionsTheme(disabledItemColor: PaletteDark.cyanBlue),
+      syncIndicatorStyle: SyncIndicatorStyle(
+          backgroundColor: PaletteDark.oceanBlue,
+          syncedBackgroundColor: PaletteDark.lightNightBlue,
+          textColor: PaletteDark.wildBlue));
+
+  // CardGradientTheme get darkCardGradientTheme => CardGradientTheme(
+  //     firstUpperCardGradientColor: PaletteDark.wildVioletBlue.withOpacity(0.7),
+  //     secondUpperCardGradientColor: PaletteDark.wildVioletBlue.withOpacity(0.7),
+  //     firstLowerCardGradientColor: PaletteDark.wildVioletBlue,
+  //     secondLowerCardGradientColor: PaletteDark.wildVioletBlue,
+  //     iconButtonTheme: CakeIconButtonTheme(
+  //         backgroundColor: PaletteDark.moderateBlue,
+  //         iconColor: primaryTextColor));
+
+  // CardExchangePageTheme get darkCardExchangePageTheme => CardExchangePageTheme(
+  //     gradientCardTheme: darkCardGradientTheme,
+  //     iconButtonTheme: darkCardGradientTheme.iconButtonTheme!
+  //         .copyWith(backgroundColor: PaletteDark.moderateBlue));
+
+  // CardSendPageTheme get darkCardSendPageTheme =>
+  //     CardSendPageTheme(gradientCardTheme: darkCardGradientTheme);
+
+  CakeAlertTheme get darkCakeAlertTheme => CakeAlertTheme(
+      backgroundColor: PaletteDark.darkNightBlue,
+      actionButtonsTheme: ActionButtonsTheme(
+          leftButtonTheme: CakeButtonTheme(textColor: Palette.alizarinRed),
+          rightButtonTheme: CakeButtonTheme(textColor: primaryColor)));
+
+  CakeMenuTheme get darkCakeMenuTheme => CakeMenuTheme(
+      coinIconColor: PaletteDark.darkCyanBlue,
+      backgroundColor: PaletteDark.deepPurpleBlue,
+      headerFirstGradientColor: PaletteDark.deepPurpleBlue,
+      headerSecondGradientColor: PaletteDark.deepPurpleBlue,
+      subnameTextColor: PaletteDark.darkCyanBlue);
+
+  CakePickerTheme get darkPickerTheme => CakePickerTheme(
+      primaryTextColor: primaryTextColor,
+      backgroundColor: containerColor,
+      dividerColor: PaletteDark.dividerColor,
+      selectedItemIconColor: primaryColor,
+      hintTextStyle: TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+          fontFamily: 'Lato',
+          decoration: TextDecoration.none,
+          color: primaryTextColor),
+      itemTextStyle: TextStyle(
+          fontSize: 14,
+          fontFamily: 'Lato',
+          fontWeight: FontWeight.w600,
+          color: primaryTextColor,
+          decoration: TextDecoration.none),
+      currencyTagStyle: CurrencyTagStyle(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(6.0),
+            color: PaletteDark.violetBlue,
+          ),
+          textStyle: TextStyle(
+            fontSize: 7.0,
+            fontFamily: 'Lato',
+            color: PaletteDark.wildBlueGrey,
+          )));
+
+  ThemeData get theme => ThemeData(
       fontFamily: 'Lato',
       brightness: Brightness.dark,
       scaffoldBackgroundColor:
@@ -22,6 +139,14 @@ class DarkTheme extends ThemeBase {
       hoverColor: PaletteDark.cyanBlue, // amount hint text (receive page)
       dividerColor: PaletteDark.dividerColor,
       hintColor: PaletteDark.pigeonBlue, // menu
+      extensions: <ThemeExtension<dynamic>>[
+        darkPageStandardTheme,
+        darkPageGradientTheme,
+        darkDashboardPageTheme,
+        darkCakeMenuTheme,
+        darkPickerTheme,
+        darkCakeAlertTheme,
+      ],
       textTheme: TextTheme(
           // title -> titleLarge
           titleLarge: TextStyle(
@@ -44,17 +169,20 @@ class DarkTheme extends ThemeBase {
           // subhead -> titleMedium
           titleMedium: TextStyle(
             color: PaletteDark.nightBlue, // address button border
-            decorationColor: PaletteDark.lightBlueGrey, // copy button (qr widget)
+            decorationColor:
+                PaletteDark.lightBlueGrey, // copy button (qr widget)
           ),
           // headline -> headlineSmall
           headlineSmall: TextStyle(
             color: PaletteDark.lightBlueGrey, // qr code
-            decorationColor: PaletteDark.darkGrey, // bottom border of amount (receive page)
+            decorationColor:
+                PaletteDark.darkGrey, // bottom border of amount (receive page)
           ),
           // display1 -> headlineMedium
           headlineMedium: TextStyle(
             color: Colors.white, // icons color (receive page)
-            decorationColor: PaletteDark.distantNightBlue, // icons background (receive page)
+            decorationColor:
+                PaletteDark.distantNightBlue, // icons background (receive page)
           ),
           // display2 -> displaySmall
           displaySmall: TextStyle(
@@ -91,8 +219,7 @@ class DarkTheme extends ThemeBase {
           bodyLarge: TextStyle(
             color: PaletteDark.deepPurpleBlue, // menu header
             decorationColor: PaletteDark.deepPurpleBlue, // menu background
-          )
-      ),
+          )),
       scrollbarTheme: ScrollbarThemeData(
         thumbColor: MaterialStateProperty.all(PaletteDark.wildBlueGrey),
         trackColor: MaterialStateProperty.all(PaletteDark.violetBlue),
@@ -183,9 +310,7 @@ class DarkTheme extends ThemeBase {
               decorationColor: PaletteDark
                   .moderateVioletBlue, // text field border on bottom panel (exchange page)
               backgroundColor: Palette.alizarinRed // alert left button text
-          )
-      ),
-      focusColor: PaletteDark.moderateBlue, // text field button (exchange page)
+              )),
       accentTextTheme: TextTheme(
         // title -> titleLarge
         titleLarge: TextStyle(
@@ -195,8 +320,10 @@ class DarkTheme extends ThemeBase {
             ),
         bodySmall: TextStyle(
           color: PaletteDark.nightBlue, // container (confirm exchange)
-          backgroundColor: PaletteDark.deepVioletBlue, // button background (confirm exchange)
-          decorationColor: Palette.darkLavender, // text color (information page)
+          backgroundColor: PaletteDark
+              .deepVioletBlue, // button background (confirm exchange)
+          decorationColor:
+              Palette.darkLavender, // text color (information page)
         ),
         // subtitle -> titleSmall
         titleSmall: TextStyle(
@@ -272,14 +399,16 @@ class DarkTheme extends ThemeBase {
             color: Palette.blueCraiola, // primary buttons
             decorationColor: PaletteDark.darkNightBlue, // alert left button
             backgroundColor: PaletteDark.granite // keyboard bar color
+            ),
+      ));
+
+  ThemeData get darkTheme => theme.copyWith(
+        colorScheme: theme.colorScheme.copyWith(
+          background: PaletteDark.backgroundColor,
+          secondary: PaletteDark.backgroundColor,
         ),
-      ),
-      cardColor: PaletteDark.darkNightBlue // bottom button (action list)
       );
 
   @override
-  ThemeData get themeData => theme.copyWith(
-      colorScheme: theme.colorScheme.copyWith(
-          background: PaletteDark.backgroundColor,
-          secondary: PaletteDark.backgroundColor));
+  ThemeData get themeData => darkTheme;
 }

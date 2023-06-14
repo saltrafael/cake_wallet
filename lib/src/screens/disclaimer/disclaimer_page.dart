@@ -1,15 +1,11 @@
 import 'dart:ui';
-import 'package:cake_wallet/palette.dart';
 import 'package:cake_wallet/routes.dart';
-import 'package:cake_wallet/utils/show_pop_up.dart';
+import 'package:cake_wallet/themes/extensions/cake_page_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:cake_wallet/src/screens/base_page.dart';
 import 'package:cake_wallet/src/widgets/primary_button.dart';
-import 'package:cake_wallet/src/widgets/alert_with_one_action.dart';
-import 'package:cake_wallet/generated/i18n.dart';
 import 'package:cake_wallet/wallet_type_utils.dart';
 
 class DisclaimerPage extends BasePage {
@@ -67,7 +63,8 @@ class DisclaimerBodyState extends State<DisclaimerPageBody> {
     return WillPopScope(
         onWillPop: () async => false,
         child: Container(
-          color: Theme.of(context).colorScheme.background,
+          color:
+              Theme.of(context).extension<PageStandardTheme>()!.backgroundColor,
           child: Column(
             children: <Widget>[
               SizedBox(height: 10.0),
@@ -88,9 +85,8 @@ class DisclaimerBodyState extends State<DisclaimerPageBody> {
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.bold,
                                     color: Theme.of(context)
-                                        .primaryTextTheme!
-                                        .titleLarge!
-                                        .color!),
+                                        .extension<PageStandardTheme>()!
+                                        .primaryTextColor),
                               ),
                             )
                           ],
@@ -108,9 +104,8 @@ class DisclaimerBodyState extends State<DisclaimerPageBody> {
                                     fontSize: 12.0,
                                     fontWeight: FontWeight.bold,
                                     color: Theme.of(context)
-                                        .primaryTextTheme!
-                                        .titleLarge!
-                                        .color!),
+                                        .extension<PageStandardTheme>()!
+                                        .primaryTextColor),
                               ),
                             )
                           ],
@@ -127,9 +122,8 @@ class DisclaimerBodyState extends State<DisclaimerPageBody> {
                                   fontSize: 12.0,
                                   fontWeight: FontWeight.normal,
                                   color: Theme.of(context)
-                                      .primaryTextTheme!
-                                      .titleLarge!
-                                      .color!),
+                                      .extension<PageStandardTheme>()!
+                                      .primaryTextColor),
                             ))
                           ],
                         ),
@@ -147,9 +141,8 @@ class DisclaimerBodyState extends State<DisclaimerPageBody> {
                                     fontSize: 14.0,
                                     fontWeight: FontWeight.bold,
                                     color: Theme.of(context)
-                                        .primaryTextTheme!
-                                        .titleLarge!
-                                        .color!),
+                                        .extension<PageStandardTheme>()!
+                                        .primaryTextColor),
                               ),
                             )
                           ],
@@ -167,7 +160,9 @@ class DisclaimerBodyState extends State<DisclaimerPageBody> {
                                 changenowUrl,
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
-                                    color: Palette.blueCraiola,
+                                    color: Theme.of(context)
+                                        .extension<PageStandardTheme>()!
+                                        .linkTextColor,
                                     fontSize: 14.0,
                                     fontWeight: FontWeight.normal,
                                     decoration: TextDecoration.underline),
@@ -193,9 +188,12 @@ class DisclaimerBodyState extends State<DisclaimerPageBody> {
                               gradient: LinearGradient(
                                 colors: [
                                   Theme.of(context)
-                                      .backgroundColor
+                                      .extension<PageStandardTheme>()!
+                                      .backgroundColor!
                                       .withOpacity(0.0),
-                                  Theme.of(context).colorScheme.background,
+                                  Theme.of(context)
+                                      .extension<PageStandardTheme>()!
+                                      .backgroundColor!,
                                 ],
                                 begin: FractionalOffset.topCenter,
                                 end: FractionalOffset.bottomCenter,
@@ -233,17 +231,20 @@ class DisclaimerBodyState extends State<DisclaimerPageBody> {
                                   decoration: BoxDecoration(
                                       border: Border.all(
                                           color: Theme.of(context)
-                                              .primaryTextTheme!
-                                              .bodySmall!
-                                              .color!,
+                                              .extension<PageStandardTheme>()!
+                                              .checkboxBorderColor!,
                                           width: 1.0),
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(8.0)),
-                                      color: Theme.of(context).colorScheme.background),
+                                      color: Theme.of(context)
+                                          .extension<PageStandardTheme>()!
+                                          .backgroundColor),
                                   child: _checked
                                       ? Icon(
                                           Icons.check,
-                                          color: Colors.blue,
+                                          color: Theme.of(context)
+                                              .extension<PageStandardTheme>()!
+                                              .primaryColor,
                                           size: 20.0,
                                         )
                                       : null,
@@ -254,9 +255,8 @@ class DisclaimerBodyState extends State<DisclaimerPageBody> {
                                       fontWeight: FontWeight.bold,
                                       fontSize: 14.0,
                                       color: Theme.of(context)
-                                          .primaryTextTheme!
-                                          .titleLarge!
-                                          .color!),
+                                          .extension<PageStandardTheme>()!
+                                          .primaryTextColor!),
                                 )
                               ],
                             ),
@@ -274,13 +274,13 @@ class DisclaimerBodyState extends State<DisclaimerPageBody> {
                           : null,
                       text: 'Accept',
                       color: Theme.of(context)
-                          .accentTextTheme!
-                          .titleSmall!
-                          .decorationColor!,
+                          .extension<PageStandardTheme>()!
+                          .disclaimerButtonTheme
+                          .backgroundColor!,
                       textColor: Theme.of(context)
-                          .accentTextTheme!
-                          .headlineSmall!
-                          .decorationColor!),
+                          .extension<PageStandardTheme>()!
+                          .disclaimerButtonTheme
+                          .textColor!),
                 ),
               ],
             ],

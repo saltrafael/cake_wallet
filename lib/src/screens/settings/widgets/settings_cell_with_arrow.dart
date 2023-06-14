@@ -1,3 +1,4 @@
+import 'package:cake_wallet/themes/extensions/cake_page_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:cake_wallet/src/widgets/standard_list.dart';
 
@@ -8,5 +9,7 @@ class SettingsCellWithArrow extends StandardListRow {
   @override
   Widget buildTrailing(BuildContext context) =>
       Image.asset('assets/images/select_arrow.png',
-          color: Theme.of(context).primaryTextTheme!.labelSmall!.color!);
+          color: Theme.of(context)
+              .extension<PageStandardTheme>()!
+              .secondaryTextColor);
 }

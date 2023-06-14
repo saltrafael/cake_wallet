@@ -1,3 +1,4 @@
+import 'package:cake_wallet/themes/extensions/alert_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:cake_wallet/src/widgets/base_alert_dialog.dart';
 
@@ -32,9 +33,10 @@ class AlertWithOneAction extends BaseAlertDialog {
       height: 52,
       padding: EdgeInsets.only(left: 12, right: 12),
       color: Theme.of(context)
-          .accentTextTheme!
-          .bodyMedium!
-          .backgroundColor!,
+          .extension<CakeAlertTheme>()!
+          .actionButtonsTheme!
+          .rightButtonTheme!
+          .backgroundColor,
       child: ButtonTheme(
         minWidth: double.infinity,
         child: TextButton(
@@ -49,9 +51,10 @@ class AlertWithOneAction extends BaseAlertDialog {
                 fontSize: 15,
                 fontWeight: FontWeight.w600,
                 color: Theme.of(context)
-                    .primaryTextTheme!
-                    .bodyMedium!
-                    .backgroundColor!,
+                    .extension<CakeAlertTheme>()!
+                    .actionButtonsTheme!
+                    .rightButtonTheme!
+                    .textColor,
                 decoration: TextDecoration.none,
               ),
             )),

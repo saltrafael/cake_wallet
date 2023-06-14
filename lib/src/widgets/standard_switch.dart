@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:cake_wallet/themes/extensions/cake_page_theme.dart';
 import 'package:flutter/material.dart';
 
 class StandardSwitch extends StatefulWidget {
@@ -25,13 +25,13 @@ class StandardSwitchState extends State<StandardSwitch> {
         decoration: BoxDecoration(
             color: widget.value
                 ? Theme.of(context)
-                    .accentTextTheme!
-                    .bodyLarge!
-                    .color!
+                    .extension<PageStandardTheme>()!
+                    .switchButtonStyle!
+                    .enabledColor
                 : Theme.of(context)
-                    .accentTextTheme!
-                    .displayLarge!
-                    .color!,
+                    .extension<PageStandardTheme>()!
+                    .switchButtonStyle!
+                    .disabledColor,
             borderRadius: BorderRadius.all(Radius.circular(14.0))),
         child: Container(
           width: 24.0,

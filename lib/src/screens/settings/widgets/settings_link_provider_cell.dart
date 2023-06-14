@@ -1,4 +1,4 @@
-import 'package:cake_wallet/palette.dart';
+import 'package:cake_wallet/themes/extensions/cake_page_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:cake_wallet/src/widgets/standard_list.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -27,7 +27,8 @@ class SettingsLinkProviderCell extends StandardListRow {
       style: TextStyle(
           fontSize: 14.0,
           fontWeight: FontWeight.w500,
-          color: Palette.blueCraiola));
+          color:
+              Theme.of(context).extension<PageStandardTheme>()!.primaryColor));
 
   static void _launchUrl(String url) async {
     try {
